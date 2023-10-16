@@ -1,5 +1,5 @@
 {
-  "name": "@quirrel/owl",
+  "name": "@ivanvs/owl",
   "version": "0.15.1",
   "description": "A high-throughput, TypeScript-native task scheduling library that runs both on Redis and with an in-memory-mock.",
   "main": "dist/index.js",
