@@ -1,0 +1,7 @@
+.idea
+.github
+examples
+node_modules
+.nyc_output
+coverage
+test

@@ -1,5 +1,5 @@
 {
-  "name": "@ivanvs/owl",
+  "name": "@ivasiljevic/owl",
   "version": "0.15.1",
   "description": "A high-throughput, TypeScript-native task scheduling library that runs both on Redis and with an in-memory-mock.",
   "main": "dist/index.js",
@@ -50,5 +50,9 @@
     "minimatch": "^3.0.5",
     "opentracing": "^0.14.5",
     "pino": "^6.11.3"
+  },
+  "types": "./dist/index.d.ts",
+  "directories": {
+    "test": "test"
   }
 }
