@@ -2,6 +2,7 @@ import { expect } from "chai";
 import { OnActivityEvent } from "../../src/activity/activity";
 import { describeAcrossBackends, waitUntil } from "../util";
 import { makeActivityEnv } from "./support";
+import { Job } from "../../src";
 
 function expectInOrder(numbers: number[]) {
   expect(numbers).to.not.contain(-1);
@@ -59,7 +60,7 @@ describeAcrossBackends("Exclusive", (backend) => {
   });
 
   async function expectToBeExecutedInSerial() {
-    await waitUntilEvent("acknowledged", "b");
+    await waitUntilEvent("acknowledged", "b", 500);
 
     expectInOrder([
       eventIndex("requested", "a"),
@@ -73,7 +74,7 @@ describeAcrossBackends("Exclusive", (backend) => {
     it("executes jobs in serial", async () => {
       await env.producer.enqueue({
         id: "a",
-        payload: "abcde",
+        payload: "block:100",
         queue: "my-queue",
         exclusive: true,
       });
@@ -83,6 +84,13 @@ describeAcrossBackends("Exclusive", (backend) => {
         queue: "my-queue",
         exclusive: true,
       });
+
+      const job = (await env.producer.findById(
+        "my-queue",
+        "b"
+      )) as Job<"every">;
+      expect(job).to.be.not.null;
+      expect(+job.runAt).to.be.closeTo(Date.now(), 1000);
 
       await expectToBeExecutedInSerial();
     });

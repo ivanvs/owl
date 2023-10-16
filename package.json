@@ -1,6 +1,6 @@
 {
   "name": "@quirrel/owl",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "A high-throughput, TypeScript-native task scheduling library that runs both on Redis and with an in-memory-mock.",
   "main": "dist/index.js",
   "files": [
@@ -47,7 +47,7 @@
   "dependencies": {
     "ioredis": "^5.2.3",
     "ioredis-mock": "^8.2.2",
-    "minimatch": "^3.0.4",
+    "minimatch": "^3.0.5",
     "opentracing": "^0.14.5",
     "pino": "^6.11.3"
   }
